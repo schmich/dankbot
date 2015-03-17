@@ -17,6 +17,8 @@ var run = async(function(channel) {
   var Periodic = require('./commands/periodic');
   var Canned = require('./commands/canned');
 
+  dankbot.plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/real_jansoon'));
+  dankbot.plugin(new Canned('!dankbot', 'sup?'));
   dankbot.plugin(new Canned('!twitter', twitter));
   dankbot.plugin(new Canned('!donate', donate));
   dankbot.plugin(new Periodic(twitter, 0, 30 * 60 * 1000));
@@ -28,6 +30,7 @@ var run = async(function(channel) {
   dankbot.plugin(new require('./commands/respects')());
   dankbot.plugin(new require('./commands/greets')());
   dankbot.plugin(new require('./commands/age')(db));
+  dankbot.plugin(new require('./commands/points')(db));
 
   dankbot.join(channel);
 });

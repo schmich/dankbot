@@ -32,7 +32,14 @@ function Command(command, handler) {
 
     if (self.command instanceof RegExp) {
       if (self.message.match(self.command)) {
-        return await(self.handler());
+        var args = self.message.split(/\s+/);
+        args.shift();
+
+        for (var i = 0; i < args.length; ++i) {
+          args[i] = args[i].trim();
+        }
+
+        return await(self.handler.apply(self, args));
       }
     } else if ((self.command instanceof String) || (typeof self.command == 'string')) {
       self.message = self.message.trim();
