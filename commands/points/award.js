@@ -3,7 +3,7 @@ var common = require('../../common'),
     await = common.await;
 
 module.exports = function(points) {
-  return new Command(/^\s*!award\s+/i, function(user, amount) {
+  return new Command('!award', function(user, amount) {
     if (this.user != this.channel) {
       return;
     }

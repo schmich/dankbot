@@ -3,6 +3,10 @@ var common = require('../../common'),
     await = common.await,
     sprintf = common.sprintf;
 
+function InsufficientPoints(points) {
+  this.points = points;
+}
+
 function Points(db) {
   var collection = db.collection('points');
 
@@ -30,6 +34,22 @@ function Points(db) {
   this.adjust = async(function(user, amount) {
     var doc = await(collection.findAndModifyAsync({ u: user }, null, { $inc: { p: amount } }, { new: true, upsert: true }));
     return doc[0].p;
+  });
+
+  this.transfer = async(function(from, to, amount) {
+    var doc = await(collection.findOneAsync({ u: from }));
+
+    var fromPoints = 0;
+    if (doc) {
+      fromPoints = doc.p;
+    }
+
+    if (amount > fromPoints) {
+      throw new InsufficientPoints(fromPoints);
+    }
+
+    await(collection.findAndModifyAsync({ u: to }, null, { $inc: { p: amount } }, { new: true, upsert: true }));
+    await(collection.updateAsync({ u: from }, { $inc: { p: -amount } }));
   });
 
   this.leaderboard = async(function(count) {
@@ -72,4 +92,7 @@ function Points(db) {
   }
 }
 
-module.exports = Points;
+module.exports = {
+  Points: Points,
+  InsufficientPoints: InsufficientPoints
+}
