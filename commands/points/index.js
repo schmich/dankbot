@@ -6,6 +6,7 @@ module.exports = function(db) {
   return [
     new require('./get')(points),
     new require('./award')(points),
-    new require('./revoke')(points)
+    new require('./revoke')(points),
+    new require('./leaderboard')(points)
   ];
 };

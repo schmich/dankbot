@@ -32,6 +32,10 @@ function Points(db) {
     return doc[0].p;
   });
 
+  this.leaderboard = async(function(count) {
+    return await(collection.find({}).sort({ p: -1 }).limit(count).toArrayAsync());
+  });
+
   this.user = function(string) {
     string = string.trim();
     if (string[0] == '@') {
