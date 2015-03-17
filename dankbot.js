@@ -18,6 +18,10 @@ var run = async(function(channel) {
   var Canned = require('./commands/canned');
 
   dankbot.plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/real_jansoon'));
+  dankbot.plugin(new Canned(/control\s*warrior/i, 'Control warrio...ResidentSleeper'));
+  dankbot.plugin(new Canned(/^\s*a\s*(y\s*)+(l\s*m\s*a\s*o\s*)?/i, 'BabyRage ayy lmao'));
+  dankbot.plugin(new Canned(/oh\s*my\s*(goodness|damn|(da+y+u+m+))/i, 'https://www.youtube.com/watch?v=DcJFdCmN98s'));
+  dankbot.plugin(new Canned(/(\bKreygasm\b.*\bdankbot)|(\bdankbot.*\bKreygasm\b)/, 'Kreygasm'));
   dankbot.plugin(new Canned('!dankbot', 'sup?'));
   dankbot.plugin(new Canned('!twitter', twitter));
   dankbot.plugin(new Canned('!donate', donate));
