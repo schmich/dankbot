@@ -6,14 +6,7 @@ var EventEmitter = require('events').EventEmitter,
     Config = common.Config,
     Log = common.Log,
     sprintf = common.sprintf,
-    request = common.request,
-    sleep = common.sleep,
-    MongoClient = common.MongoClient,
-    Twitch = common.Twitch
-    Promise = common.Promise,
-    Message = common.Message,
-    Join = common.Join,
-    Part = common.Part;
+    Promise = common.Promise;
 
 function Bot() {
   var emitter = new EventEmitter();
