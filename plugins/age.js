@@ -6,8 +6,10 @@ var common = require('../common'),
 module.exports = function(db) {
   var joins = db.collection('joins');
 
+  var userService = require('../lib/user')(db);
+
   return new Command('!age', function(user) {
-    user = user || this.user;
+    user = userService.canonical(user) || this.user;
 
     var doc = await(joins.findOneAsync({ u: user }, { d: 1 }, { sort: [['d', 'asc']] }));
 

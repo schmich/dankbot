@@ -3,15 +3,15 @@ var common = require('../../common'),
     await = common.await,
     InsufficientPoints = require('../../lib/points').InsufficientPoints;
 
-module.exports = function(points) {
+module.exports = function(points, userService) {
   return new Command('!gift', function(user, amount) {
     if (!user || !amount) {
       this.say('%s: point gifting format is !gift letoucan 42', this.user);
       return;
     }
 
-    var from = points.user(this.user);
-    var to = points.user(user);
+    var from = userService.canonical(this.user);
+    var to = userService.canonical(user);
 
     if (from == to) {
       this.say('Gifting yourself points, %s? DansGame', from);
@@ -24,7 +24,7 @@ module.exports = function(points) {
       return;
     }
 
-    if (!await(points.userExists(to))) {
+    if (!await(userService.exists(to))) {
       this.say('%s: user %s does not exist', from, to);
       return;
     }

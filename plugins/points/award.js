@@ -2,13 +2,13 @@ var common = require('../../common'),
     Command = common.Command,
     await = common.await;
 
-module.exports = function(points) {
+module.exports = function(points, userService) {
   return new Command('!award', function(user, amount) {
     if (this.user != this.channel) {
       return;
     }
 
-    var target = points.user(user);
+    var target = userService.canonical(user);
     var amount = parseInt(amount);
 
     if (isNaN(amount)) {
@@ -16,7 +16,7 @@ module.exports = function(points) {
       return;
     }
 
-    if (!await(points.userExists(target))) {
+    if (!await(userService.exists(target))) {
       this.say('User %s does not exist.', target);
       return;
     }
