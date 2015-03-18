@@ -1,5 +1,6 @@
 var common = require('../../common'),
     Command = common.Command,
+    canonicalUser = common.canonicalUser,
     await = common.await;
 
 module.exports = function(points, userService) {
@@ -8,7 +9,7 @@ module.exports = function(points, userService) {
       return;
     }
 
-    var target = userService.canonical(user);
+    var target = canonicalUser(user);
     var amount = parseInt(amount);
 
     if (isNaN(amount)) {

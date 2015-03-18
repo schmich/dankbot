@@ -21,6 +21,19 @@ function sleep(duration) {
   });
 }
 
+function canonicalUser(user) {
+  if (!user) {
+    return null;
+  }
+
+  user = user.trim();
+  if (user[0] == '@') {
+    user = user.substr(1);
+  }
+
+  return user.toLowerCase();
+}
+
 var json = async(function(url) {
   var response = await(request.getAsync(url));
 
@@ -93,6 +106,7 @@ module.exports = {
   Twitch: Twitch,
   Promise: Promise,
   sleep: sleep,
+  canonicalUser: canonicalUser,
   moment: moment,
   Command: plugin.Command,
   OnMessage: plugin.OnMessage,

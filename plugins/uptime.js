@@ -2,11 +2,12 @@ var common = require('../common'),
     await = common.await,
     sprintf = common.sprintf,
     Twitch = common.Twitch,
+    canonicalUser = common.canonicalUser,
     Command = common.Command;
 
 module.exports = function() {
   return new Command('!uptime', function(user) {
-    user = user || this.channel;
+    user = canonicalUser(user) || this.channel;
 
     var url = sprintf('https://api.twitch.tv/kraken/streams/%s', user);
     var data = await(Twitch.request(url));

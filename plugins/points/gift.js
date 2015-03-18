@@ -1,5 +1,6 @@
 var common = require('../../common'),
     Command = common.Command,
+    canonicalUser = common.canonicalUser,
     await = common.await,
     InsufficientPoints = require('../../lib/points').InsufficientPoints;
 
@@ -10,8 +11,8 @@ module.exports = function(points, userService) {
       return;
     }
 
-    var from = userService.canonical(this.user);
-    var to = userService.canonical(user);
+    var from = canonicalUser(this.user);
+    var to = canonicalUser(user);
 
     if (from == to) {
       this.say('Gifting yourself points, %s? DansGame', from);

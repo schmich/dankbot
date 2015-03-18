@@ -1,15 +1,14 @@
 var common = require('../common'),
     await = common.await,
     moment = common.moment,
+    canonicalUser = common.canonicalUser,
     Command = common.Command;
 
 module.exports = function(db) {
   var joins = db.collection('joins');
 
-  var userService = require('../lib/user')(db);
-
   return new Command('!age', function(user) {
-    user = userService.canonical(user) || this.user;
+    user = canonicalUser(user) || this.user;
 
     var doc = await(joins.findOneAsync({ u: user }, { d: 1 }, { sort: [['d', 'asc']] }));
 
