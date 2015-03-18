@@ -14,8 +14,8 @@ var run = async(function(channel) {
   var twitter = 'Follow jansoon https://twitter.com/jansoon SwiftRage';
   var donate = 'Donate to jansoon https://www.twitchalerts.com/donate/real_jansoon Kreygasm';
 
-  var Periodic = require('./commands/periodic');
-  var Canned = require('./commands/canned');
+  var Periodic = require('./plugins/periodic');
+  var Canned = require('./plugins/canned');
 
   dankbot
     .plugin(new Canned(/(jansoon\s*s\s*u\s*c\s*k\s*s?)|(f\s*u?\s*c\s*k\s*jansoon)|((yo)?u?\s*s\s*u\s*c\s*k\s*jansoon)/i, 'Manners! DansGame'))
@@ -30,16 +30,16 @@ var run = async(function(channel) {
     .plugin(new Canned('!donate', donate))
     .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
     .plugin(new Periodic(donate, 15 * 60 * 1000, 30 * 60 * 1000))
-    .plugin(new require('./commands/joke')())
-    .plugin(new require('./commands/kappa')())
-    .plugin(new require('./commands/uptime')())
-    .plugin(new require('./commands/console-log')())
-    .plugin(new require('./commands/mongo-log')(db))
-    .plugin(new require('./commands/respects')())
-    .plugin(new require('./commands/greets')())
-    .plugin(new require('./commands/song-request')())
-    .plugin(new require('./commands/age')(db))
-    .plugin(new require('./commands/points')(db))
+    .plugin(new require('./plugins/joke')())
+    .plugin(new require('./plugins/kappa')())
+    .plugin(new require('./plugins/uptime')())
+    .plugin(new require('./plugins/console-log')())
+    .plugin(new require('./plugins/mongo-log')(db))
+    .plugin(new require('./plugins/respects')())
+    .plugin(new require('./plugins/greets')())
+    .plugin(new require('./plugins/song-request')())
+    .plugin(new require('./plugins/age')(db))
+    .plugin(new require('./plugins/points')(db))
     .join(channel);
 });
 
