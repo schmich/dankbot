@@ -43,6 +43,8 @@ module.exports = function(points) {
       if (e instanceof InsufficientPoints) {
         if (e.points == 0) {
           this.say('%s: you have no ₯ to give', this.user);
+        } else if (e.points < 0) {
+          this.say('%s: yous still in debt with ' + e.points + ' ₯ FailFish', this.user);
         } else {
           this.say('%s: you only have %s', this.user, points.display(e.points));
         }
