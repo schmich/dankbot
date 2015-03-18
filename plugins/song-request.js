@@ -40,8 +40,6 @@ module.exports = function(points) {
     var id = idOrUrl;
     var parts = url.parse(idOrUrl);
 
-    console.log(parts);
-
     if (parts.host && parts.host.match(/\.youtube\./i)) {
       var params = querystring.parse(parts.query);
       id = params.v || id;
@@ -54,8 +52,6 @@ module.exports = function(points) {
       var params = querystring.parse(parts.query);
       id = params.v || id;
     } */
-
-    console.log(id);
 
     return id;
   }
