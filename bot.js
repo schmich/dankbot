@@ -12,12 +12,12 @@ function Bot() {
   var emitter = new EventEmitter();
   emitter.setMaxListeners(0);
 
-  var client = new irc.Client('irc.twitch.tv', Config.twitch.username, {
+  var client = new irc.Client('irc.twitch.tv', Config.twitch.user, {
     port: 6667,
     showErrors: true,
     password: 'oauth:' + Config.twitch.oauth,
-    userName: Config.twitch.username,
-    realName: Config.twitch.username,
+    userName: Config.twitch.user,
+    realName: Config.twitch.user,
     autoConnect: false,
     showErrors: true,
     stripColors: true,
