@@ -6,7 +6,7 @@ var common = require('../common'),
     URI = common.URI,
     await = common.await,
     sprintf = common.sprintf
-    request = common.request;
+    json = common.json;
 
 module.exports = function(points) {
   return new Command('!songrequest', function(arg) {
@@ -19,8 +19,7 @@ module.exports = function(points) {
       .query({ part: 'id', id: videoId(arg), key: Config.youtube.key })
       .toString();
 
-    var response = await(request.getAsync(url));
-    var data = JSON.parse(response[0].body);
+    var data = await(json(url));
 
     var valid = data && data.items && data.items.length;
     if (valid) {
