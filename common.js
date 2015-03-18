@@ -35,10 +35,10 @@ var json = async(function(url) {
 function Twitch() {
 }
 
-Twitch.lastRequest = +Date.now();
+Twitch.lastRequest = Date.now();
 
 Twitch.request = async(function(url, headers) {
-  var now = +Date.now();
+  var now = Date.now();
   var wait = Math.max(1 - (now - Twitch.lastRequest), 0);
   await(sleep(wait));
 

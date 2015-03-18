@@ -1,7 +1,7 @@
 var common = require('../../common'),
     Command = common.Command,
     await = common.await,
-    InsufficientPoints = require('./points').InsufficientPoints;
+    InsufficientPoints = require('../../lib/points').InsufficientPoints;
 
 module.exports = function(points) {
   return new Command('!gift', function(user, amount) {

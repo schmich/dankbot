@@ -12,10 +12,10 @@ module.exports = function() {
       Log.info(sprintf('[%s] %s: %s', this.channel, this.user, this.message));
     }),
     new OnJoin(function() {
-      Log.info(sprintf('[%s] >>> %s', this.channel, this.user));
+      Log.info(sprintf('[%s] JOIN %s', this.channel, this.user));
     }),
     new OnPart(function() {
-      Log.info(sprintf('[%s] <<< %s', this.channel, this.user));
+      Log.info(sprintf('[%s] PART %s', this.channel, this.user));
     })
   ];
 };

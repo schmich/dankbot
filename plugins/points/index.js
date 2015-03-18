@@ -1,4 +1,4 @@
-var Points = require('./points').Points;
+var Points = require('../../lib/points').Points;
 
 module.exports = function(db) {
   var points = new Points(db);
