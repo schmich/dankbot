@@ -13,7 +13,7 @@ function OnMessage(handler) {
       self.message = message;
       self.say = say;
 
-      return await(self.handler());
+      self.handler();
     }));
   };
 }
@@ -39,7 +39,7 @@ function Command(command, handler) {
           args[i] = args[i].trim();
         }
 
-        return await(self.handler.apply(self, args));
+        self.handler.apply(self, args);
       }
     } else if ((self.command instanceof String) || (typeof self.command == 'string')) {
       self.message = self.message.trim();
@@ -52,7 +52,7 @@ function Command(command, handler) {
           args[i] = args[i].trim();
         }
 
-        return await(self.handler.apply(self, args));
+        self.handler.apply(self, args);
       }
     }
   });
@@ -68,7 +68,7 @@ function OnChannel(handler) {
       self.channel = channel;
       self.say = say;
 
-      return await(self.handler());
+      self.handler();
     }));
   };
 }
@@ -84,7 +84,7 @@ function OnJoin(handler) {
       self.user = user;
       self.say = say;
 
-      return await(self.handler());
+      self.handler();
     }));
   };
 }
@@ -100,7 +100,7 @@ function OnPart(handler) {
       self.user = user;
       self.say = say;
 
-      return await(self.handler());
+      self.handler();
     }));
   };
 }
