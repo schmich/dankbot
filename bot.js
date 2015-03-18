@@ -66,7 +66,7 @@ function Bot() {
 
     channel = channel.substr(1).trim().toLowerCase();
 
-    emitter.emit('part', channel, say(channel));
+    emitter.emit('part', channel, user, say(channel));
   }));
 
   this.join = function(channel) {
