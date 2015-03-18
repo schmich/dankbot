@@ -33,6 +33,7 @@ var run = async(function(channel) {
   dankbot.plugin(new require('./commands/log')());
   dankbot.plugin(new require('./commands/respects')());
   dankbot.plugin(new require('./commands/greets')());
+  dankbot.plugin(new require('./commands/song-request')());
   dankbot.plugin(new require('./commands/age')(db));
   dankbot.plugin(new require('./commands/points')(db));
 
