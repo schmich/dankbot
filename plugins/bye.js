@@ -4,7 +4,7 @@ var common = require('../common'),
     sprintf = common.sprintf;
 
 module.exports = function() {
-  var byes = ['goodbye', 'bye', 'cya', 'peace', 'peace out', 'later', 'see ya'];
+  var byes = ['goodbye', 'bye', 'cya', 'peace', 'peace out', 'later', 'see ya', 'see you', 'see you later'];
 
   var pattern = new RegExp(sprintf('(%s)\\s*dank\\s*bot', byes.join('|')), 'i');
 
