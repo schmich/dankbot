@@ -78,6 +78,8 @@ function Bot() {
         emitter.emit('channel', channel, say(channel));
       });
     });
+
+    return this;
   };
 
   var say = function(channel) {
@@ -94,6 +96,8 @@ function Bot() {
     } else {
       plugin.load(emitter);
     }
+
+    return this;
   };
 };
 
