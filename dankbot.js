@@ -39,6 +39,7 @@ var run = async(function(channel) {
     .plugin(new require('./plugins/respects')())
     .plugin(new require('./plugins/greet')(db))
     .plugin(new require('./plugins/song-request')())
+    .plugin(new require('./plugins/press-1-if')())
     .plugin(new require('./plugins/age')(db))
     .plugin(new require('./plugins/points')(db))
     .join(channel);

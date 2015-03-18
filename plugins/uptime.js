@@ -16,7 +16,7 @@ module.exports = function() {
       return;
     }
 
-    var msec = +Date.now() - +(new Date(data.stream.created_at));
+    var msec = Date.now() - +(new Date(data.stream.created_at));
     var min = Math.floor(msec / 1000 / 60);
 
     var uptime = '';
