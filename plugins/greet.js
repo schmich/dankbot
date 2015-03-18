@@ -74,7 +74,7 @@ module.exports = function(db) {
     }
   }
 
-  var updateLiveUsers = async(function(channel, events) {
+  var updateLiveUsers = async(function(channel) {
     var url = sprintf('https://tmi.twitch.tv/group/user/%s/chatters', channel);
     var data = await(Twitch.request(url, false));
 
@@ -84,11 +84,11 @@ module.exports = function(db) {
       .addEach(data.chatters.admins)
       .addEach(data.chatters.global_mods)
       .addEach(data.chatters.viewers);
+  
+    if (liveUsers[channel]) {
+      var usersPart = liveUsers[channel].difference(currentUsers);
+      var usersJoin = currentUsers.difference(liveUsers[channel]);
 
-    var usersPart = liveUsers[channel].difference(currentUsers);
-    var usersJoin = currentUsers.difference(liveUsers[channel]);
-
-    if (events) {
       usersPart.forEach(function(user) {
         onUserPart(channel, user);
       });
@@ -107,10 +107,10 @@ module.exports = function(db) {
 
       var channel = this.channel;
 
-      updateLiveUsers(channel, false);
+      updateLiveUsers(channel);
 
       setInterval(function() {
-        updateLiveUsers(channel, true);
+        updateLiveUsers(channel);
       }, 30 * 1000);
     })
   ];
