@@ -1,5 +1,6 @@
 var common = require('../../common'),
     Command = common.Command,
+    canonicalUser = common.canonicalUser,
     await = common.await;
 
 module.exports = function(points, userService) {
@@ -8,11 +9,11 @@ module.exports = function(points, userService) {
       return;
     }
 
-    var target = userService(user);
+    var target = canonicalUser(user);
     var amount = parseInt(amount);
 
     if (isNaN(amount)) {
-      this.say('%s: points awarded must be an integer.', this.user);
+      this.say('%s: points revoked must be an integer.', this.user);
       return;
     }
 
