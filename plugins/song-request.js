@@ -1,5 +1,6 @@
 var common = require('../common'),
     url = require('url'),
+    querystring = require('querystring'),
     _ = require('lodash'),
     Command = common.Command,
     Config = common.Config,
