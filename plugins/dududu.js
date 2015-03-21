@@ -9,14 +9,14 @@ module.exports = function() {
   var countF = {};
   var reset = {};
 
-  return new Command(/^\s*F\s*$/i, function() {
+  return new Command(/^\s*u*(\s*d+\s*u+\s*){2,}d*\s*$/i, function() {
     var self = this;
 
     var channel = this.channel;
     var last = lastF[channel] || 0;
     var now = Date.now();
 
-    if (now - last > (60 * 1000)) {
+    if (now - last > (2 * 60 * 1000)) {
       countF[channel] = countF[channel] || 0;
       countF[channel]++;
 
@@ -32,7 +32,8 @@ module.exports = function() {
 
       if (countF[channel] == 2) {
         setTimeout(function() {
-          self.say('F');
+          self.say(dududu());
+
           lastF[channel] = Date.now();
           countF[channel] = 0;
           clearTimeout(reset[channel]);
@@ -41,4 +42,14 @@ module.exports = function() {
       }
     }
   });
+
+  function dududu() {
+    var message = '';
+    for (var i = _.random(3, 4); i > 0; --i) {
+      message += _.repeat(_.random(1, 2) == 1 ? 'D' : 'd', _.random(1, 2));
+      message += _.repeat(_.random(1, 2) == 1 ? 'U' : 'u', _.random(1, 2));
+    }
+
+    return message;
+  }
 };

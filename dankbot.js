@@ -37,6 +37,7 @@ var run = async(function(channel) {
     .plugin(new require('./plugins/console-log')())
     .plugin(new require('./plugins/mongo-log')(db))
     .plugin(new require('./plugins/respects')())
+    .plugin(new require('./plugins/dududu')())
     .plugin(new require('./plugins/bye')())
     .plugin(new require('./plugins/greet')(db))
     .plugin(new require('./plugins/song-request')())
