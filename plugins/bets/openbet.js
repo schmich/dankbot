@@ -19,7 +19,7 @@ module.exports = function(bets) {
 
     if (created) {
       var message = sprintf(
-        'Betting is now open. Options are: %s. Use !bet <amount> <option> to bet, e.g. !bet 20 %s',
+        'Betting is now open. Options are %s. Bet with !bet <amount> <option>, e.g. !bet 20 %s',
         created.options.join(', '),
         created.options[0]
       );

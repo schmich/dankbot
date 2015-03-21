@@ -24,7 +24,7 @@ module.exports = function(bets) {
       var winners = results.winners;
       var losers = results.losers;
 
-      this.say('[%s] wins it! Drum roll for results...', result);
+      this.say('%s wins it! Drum roll for results...', result);
       var showLosers = function() {
         var loserList = [];
         for (var i = 0; i < losers.length; ++i) {
