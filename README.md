@@ -1,4 +1,4 @@
-# <img src="http://static-cdn.jtvnw.net/emoticons/v1/88/1.0"/> dankbot
+# <img src="http://static-cdn.jtvnw.net/emoticons/v1/28/1.0"/> dankbot
 
 # Setup
 
