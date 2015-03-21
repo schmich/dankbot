@@ -7,11 +7,13 @@ var common = require('../common'),
     Config = common.Config,
     Command = common.Command,
     OnChannel = common.OnChannel,
+    OnMessage = common.OnMessage,
     Twitch = common.Twitch;
 
 module.exports = function(db) {
   var liveUsers = {};
   var say = {};
+  var partDelays = {};
 
   var joins = db.collection('joins');
   var parts = db.collection('parts');
@@ -21,13 +23,19 @@ module.exports = function(db) {
 
   function onUserJoin(channel, user) {
     if (user != channel && user != Config.twitch.user) {
-      var lastSeen = await(userService.lastSeen(user));
-      var stats = await(pointService.query(user));
-
-      if (lastSeen === null) {
-        say[channel]('New viewer %s joined PogChamp Neva bin here befo!', user);
+      var channelDelays = delays(channel);
+      if (channelDelays[user]) {
+        clearTimeout(channelDelays[user]);
+        delete channelDelays[user];
       } else {
-        say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), pointService.display(stats.points), stats.rank);
+        var lastSeen = await(userService.lastSeen(user));
+        var stats = await(pointService.query(user));
+
+        if (lastSeen === null) {
+          say[channel]('New viewer %s joined PogChamp Neva bin here befo!', user);
+        } else {
+          say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), pointService.display(stats.points), stats.rank);
+        }
       }
     }
 
@@ -41,7 +49,12 @@ module.exports = function(db) {
       return;
     }
 
-    say[channel]('%s left BibleThump...rip', user);
+    var channelDelays = delays(channel);
+    channelDelays[user] = setTimeout(function() {
+      clearTimeout(channelDelays[user]);
+      delete channelDelays[user];
+      say[channel]('%s left BibleThump...rip', user);
+    }, 2 * 60 * 1000);
   }
 
   function timeAgo(timestamp) {
@@ -78,8 +91,8 @@ module.exports = function(db) {
     var url = sprintf('https://tmi.twitch.tv/group/user/%s/chatters', channel);
     var data = await(Twitch.request(url, false));
 
-    var currentUsers = new Set();
-    currentUsers.addEach(data.chatters.moderators)
+    var currentUsers = new Set()
+      .addEach(data.chatters.moderators)
       .addEach(data.chatters.staff)
       .addEach(data.chatters.admins)
       .addEach(data.chatters.global_mods)
@@ -101,6 +114,15 @@ module.exports = function(db) {
     liveUsers[channel] = currentUsers;
   });
 
+  function delays(channel, user) {
+    var users = partDelays[channel];
+    if (!users) {
+      partDelays[channel] = users = {}
+    }
+
+    return users;
+  }
+
   return [
     new OnChannel(function() {
       say[this.channel] = this.say;
@@ -112,6 +134,9 @@ module.exports = function(db) {
       setInterval(function() {
         updateLiveUsers(channel);
       }, 30 * 1000);
+    }),
+    new OnMessage(function() {
+      clearTimeout(delays(this.channel)[this.user]);
     })
   ];
 };
