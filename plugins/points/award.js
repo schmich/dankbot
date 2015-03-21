@@ -1,6 +1,7 @@
 var common = require('../../common'),
     Command = common.Command,
     canonicalUser = common.canonicalUser,
+    dkp = common.dkp,
     await = common.await;
 
 module.exports = function(points, userService) {
@@ -25,6 +26,6 @@ module.exports = function(points, userService) {
     var newPoints = await(points.adjust(target, amount));
     var newRank = await(points.rank(newPoints));
 
-    this.say('Awarded %s to %s - Total %s (rank %d) BloodTrail', points.display(amount), target, points.display(newPoints), newRank);
+    this.say('Awarded %s to %s - Total %s (rank %d) BloodTrail', dkp(amount), target, dkp(newPoints), newRank);
   });
 };

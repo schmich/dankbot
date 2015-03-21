@@ -1,6 +1,7 @@
 var common = require('../../common'),
     Command = common.Command,
     canonicalUser = common.canonicalUser,
+    dkp = common.dkp,
     await = common.await;
 
 module.exports = function(points) {
@@ -8,6 +9,6 @@ module.exports = function(points) {
     var user = canonicalUser(user) || this.user;
 
     var stats = await(points.query(user));
-    this.say('%s has %s (rank %d)', user, points.display(stats.points), stats.rank);
+    this.say('%s has %s (rank %d)', user, dkp(stats.points), stats.rank);
   });
 };

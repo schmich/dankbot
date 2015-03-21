@@ -4,6 +4,7 @@ var common = require('../common'),
     async = common.async,
     await = common.await,
     sprintf = common.sprintf,
+    dkp = common.dkp,
     Config = common.Config,
     Command = common.Command,
     OnChannel = common.OnChannel,
@@ -34,7 +35,7 @@ module.exports = function(db) {
         if (lastSeen === null) {
           say[channel]('New viewer %s joined PogChamp Neva bin here befo!', user);
         } else {
-          say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), pointService.display(stats.points), stats.rank);
+          say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), dkp(stats.points), stats.rank);
         }
       }
     }

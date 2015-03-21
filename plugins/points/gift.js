@@ -1,7 +1,9 @@
 var common = require('../../common'),
+    Log = common.Log,
     Command = common.Command,
     canonicalUser = common.canonicalUser,
     await = common.await,
+    dkp = common.dkp,
     InsufficientPoints = require('../../lib/points').InsufficientPoints;
 
 module.exports = function(points, userService) {
@@ -47,14 +49,15 @@ module.exports = function(points, userService) {
         } else if (e.points < 0) {
           this.say('%s: yous still in debt with %d ₯ FailFish', this.user, e.points);
         } else {
-          this.say('%s: you only have %s', this.user, points.display(e.points));
+          this.say('%s: you only have %s', this.user, dkp(e.points));
         }
       } else {
+        Log.error(e);
         this.say('Unexpected error');
       }
       return;
     }
 
-    this.say('%s gifted %s %s HeyGuys', from, to, points.display(amount));
+    this.say('%s gifted %s %s HeyGuys', from, to, dkp(amount));
   });
 };

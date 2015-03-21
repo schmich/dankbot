@@ -34,6 +34,14 @@ function canonicalUser(user) {
   return user.toLowerCase();
 }
 
+function dkp(points) {
+  function commafy(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  return sprintf('%s ₯', commafy(points));
+}
+
 var json = async(function(url) {
   var response = await(request.getAsync(url));
 
@@ -106,6 +114,7 @@ module.exports = {
   Twitch: Twitch,
   Promise: Promise,
   sleep: sleep,
+  dkp: dkp,
   canonicalUser: canonicalUser,
   moment: moment,
   Command: plugin.Command,

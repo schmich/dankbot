@@ -1,6 +1,7 @@
 var common = require('../../common'),
     Command = common.Command,
     await = common.await,
+    dkp = common.dkp,
     sprintf = common.sprintf;
 
 module.exports = function(points) {
@@ -10,7 +11,7 @@ module.exports = function(points) {
     var records = [];
     for (var i = 0; i < docs.length; ++i) {
       var doc = docs[i];
-      records.push(sprintf("%d) %s %s", i + 1, doc.u, points.display(doc.p)));
+      records.push(sprintf("%d) %s %s", i + 1, doc.u, dkp(doc.p)));
     }
 
     this.say(records.join(' - '));
