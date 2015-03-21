@@ -13,3 +13,8 @@
  - For song requests, set YouTube API token (see [YouTube Data API](https://developers.google.com/youtube/v3/))
 - Edit `dankbot.js`, configure plugins
 - Run `npm start <channel name>`
+
+## License
+
+Copyright &copy; 2015 Chris Schmich<br>
+CC BY-NC-SA 4.0 License. See [LICENSE](LICENSE) for details.
