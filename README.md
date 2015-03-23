@@ -6,7 +6,7 @@
 - Install [NodeJS 0.11.x](http://nodejs.org/dist/v0.11.16/) (or any version with Harmony support)
 - `git clone https://github.com/schmich/dankbot`
 - `npm install`
-- `cp config.js.tmpl config.js`
+- `cp config.js.tpl config.js`
 - Update `config.js`
  - Set Twitch user for bot
  - Set Twitch OAuth token for bot (see [OAuth generator](http://twitchapps.com/tmi/))
