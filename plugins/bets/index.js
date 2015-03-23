@@ -8,6 +8,7 @@ module.exports = function(db) {
     new require('./closebet')(bets),
     new require('./killbet')(bets),
     new require('./result')(bets),
-    new require('./bet')(bets)
+    new require('./bet')(bets),
+    new require('./bets')(bets)
   ];
 };
