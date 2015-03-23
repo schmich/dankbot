@@ -42,12 +42,12 @@ module.exports = function(bets) {
 
     var amount = parseInt(amount);
     if (isNaN(amount) || (amount < 1)) {
-      this.say('%s: bet amount must be a positive integer.', this.user);
+      this.say('%s: bet amount must be a positive integer. Format is !bet <amount> <option>', this.user);
       return;
     }
 
     if (!option) {
-      this.say('%s: you must specify an option to bet on.', this.user);
+      this.say('%s: you must specify an option to bet on. Format is !bet <amount> <option>', this.user);
       return;
     }
 
