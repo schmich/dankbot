@@ -29,13 +29,13 @@ module.exports = function(bets) {
       totals[bet.option].count++;
     }
 
-    var betSummary = '';
+    var betParts = [];
     for (var option in totals) {
       var votes = totals[option].count;
       var points = totals[option].points;
-      betSummary += sprintf('[%s]: %d vote%s for %s ', option, votes, votes == 1 ? '' : 's', dkp(points));
+      betParts.push(sprintf('%s: %d vote%s for %s', option, votes, votes == 1 ? '' : 's', dkp(points)));
     }
 
-    this.say('Betting is now closed. Totals: %s', betSummary);
+    this.say('Betting is now closed. Totals: %s', betParts.join(' / '));
   });
 };
