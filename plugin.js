@@ -44,7 +44,8 @@ function Command(command, handler) {
     } else if ((self.command instanceof String) || (typeof self.command == 'string')) {
       self.message = self.message.trim();
 
-      if (self.message.indexOf(self.command) == 0) {
+      var pattern = new RegExp('^\\s*' + self.command + '(\\s+|$)', 'i');
+      if (self.message.match(pattern)) {
         var args = self.message.split(/\s+/);
         args.shift();
 
