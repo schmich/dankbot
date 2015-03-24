@@ -12,7 +12,7 @@ var common = require('../common'),
 module.exports = function(points) {
   return new Command('!songrequest', function(arg) {
     if (!arg) {
-      this.say('%s: format is !songrequest https://youtu.be/DcJFdCmN98s or !songrequest DcJFdCmN98s', this.user);
+      this.say('Format is !songrequest https://youtu.be/DcJFdCmN98s or !songrequest DcJFdCmN98s');
       return;
     }
 
