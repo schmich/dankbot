@@ -55,4 +55,4 @@ if (process.argv.length < 3) {
 }
 
 var channel = process.argv[2];
-run(channel);
+run(channel).done();
