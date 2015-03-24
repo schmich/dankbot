@@ -18,6 +18,7 @@ var run = async(function(channel) {
   var Canned = require('./plugins/canned');
 
   dankbot
+    .plugin(new Canned(/^\s*Kappa\s*$/, 'Kappa'))
     .plugin(new Canned(/\b(ty|thanks|danke|(thank you))\s+dank\s*bot/i, 'ur welcome'))
     .plugin(new Canned(/(jansoon\s*s\s*u\s*c\s*k\s*s?)|(f\s*u?\s*c\s*k\s*jansoon)|((yo)?u?\s*s\s*u\s*c\s*k\s*jansoon)/i, 'Manners! DansGame'))
     .plugin(new Canned(/f\s*u\s*c\s*k\s*d\s*a\s*n\s*k\s*b\s*o\s*t/i, "Oi, m8, I'll bust ye in de gabba! SwiftRage"))
@@ -32,7 +33,6 @@ var run = async(function(channel) {
     .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
     .plugin(new Periodic(donate, 15 * 60 * 1000, 30 * 60 * 1000))
     .plugin(new require('./plugins/joke')())
-    .plugin(new require('./plugins/kappa')())
     .plugin(new require('./plugins/wave')())
     .plugin(new require('./plugins/uptime')())
     .plugin(new require('./plugins/console-log')())
