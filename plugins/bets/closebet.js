@@ -31,11 +31,16 @@ module.exports = function(bets) {
 
     var betParts = [];
     for (var option in totals) {
-      var votes = totals[option].count;
+      var totalBets = totals[option].count;
       var points = totals[option].points;
-      betParts.push(sprintf('%s: %d vote%s for %s', option, votes, votes == 1 ? '' : 's', dkp(points)));
+
+      if (totalBets > 0) {
+        betParts.push(sprintf('★ %s: %d bet%s for %s', option, totalBets, totalBets == 1 ? '' : 's', dkp(points)));
+      } else {
+        betParts.push(sprintf('★ %s: no bets', option));
+      }
     }
 
-    this.say('Betting is now closed. Totals: %s', betParts.join(' / '));
+    this.say('Betting is now closed. Totals: %s', betParts.join(' — '));
   });
 };

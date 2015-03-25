@@ -30,13 +30,19 @@ module.exports = function(bets) {
       var optionBets = options[option];
       var users = 'no bets';
 
+      var total = 0;
+
       if (optionBets.length > 0) {
         users = _(optionBets).sortBy('points').reverse().map(function(bet) {
-          return sprintf('%s %s', bet.user, dkp(bet.points));
+          return sprintf('%s %d', bet.user, bet.points);
         }).join(', ');
-      }
 
-      betMessages.push(sprintf('[%s] %s', option, users));
+        total = _(optionBets).map(function(b) { return b.points; }).sum();
+
+        betMessages.push(sprintf('★ %s (%s): %s', option, dkp(total), users));
+      } else {
+        betMessages.push(sprintf('★ %s: no bets', option));
+      }
     }
 
     this.say(betMessages.join(' — '));
