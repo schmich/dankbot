@@ -18,21 +18,23 @@ function escapeHtml(text) {
 }
 
 var run = async(function(port) {
-  var db = await(MongoClient.connectAsync(Config.mongo));
-
   var app = express();
 
-  app.get('/', function(req, res) {
+  app.get('/', async(function(req, res) {
+    var db = await(MongoClient.connectAsync(Config.mongo));
+
     res.write('<html><head><meta charset="UTF-8"></head><body><pre>');
-    var cursor = db.collection('messages').find();
-    cursor.each(function(err, doc) {
-      if (doc === null) {
-        res.end('</pre></body></html>');
-      } else {
-        res.write(doc.d + ': ' + doc.u + ': ' + escapeHtml(doc.t) + '\n');
-      }
-    });
-  });
+
+    var cursor = await(db.collection('messages').findAsync());
+    while ((doc = await(cursor.nextObjectAsync())) != null) {
+      res.write(doc.d + ': ' + doc.u + ': ' + escapeHtml(doc.t) + '\n');
+    }
+
+    res.end('</pre></body></html>');
+
+    cursor.close();
+    db.close();
+  }));
 
   app.listen(port, '0.0.0.0', function() {
     console.log('Listening on port ' + port + '.');
