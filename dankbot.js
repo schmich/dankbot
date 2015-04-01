@@ -32,6 +32,7 @@ var run = async(function(channel) {
     .plugin(new Canned(/^\s*\\\s*Kappa\s*$/, 'Kappa/'))
     .plugin(new Canned(/^\s*o\s*\/\s*$/, '\\o'))
     .plugin(new Canned(/^\s*\\\s*o\s*$/, 'o/'))
+    .plugin(new Canned('!downtime', 'Downtime? Never! SwiftRage'))
     .plugin(new Canned('!dankbot', 'sup?'))
     .plugin(new Canned('!twitter', twitter))
     .plugin(new Canned('!donate', donate))
