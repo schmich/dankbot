@@ -23,6 +23,7 @@ var run = async(function(channel) {
     .plugin(new Canned(/(jansoon\s*s\s*u\s*c\s*k\s*s?)|(f\s*u?\s*c\s*k\s*jansoon)|((yo)?u?\s*s\s*u\s*c\s*k\s*jansoon)/i, 'Manners! DansGame'))
     .plugin(new Canned(/f\s*u\s*c\s*k\s*d\s*a\s*n\s*k\s*b\s*o\s*t/i, "Oi, m8, I'll bust ye in de gabba! SwiftRage"))
     .plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/real_jansoon'))
+    .plugin(new Canned('!commands', 'List of commands under the stream m8. OMGScoots'))
     .plugin(new Canned(/control\s*warrior/i, 'Control warrio...ResidentSleeper'))
     .plugin(new Canned(/^\s*a\s*(y\s*)+(l\s*m\s*a\s*o\s*)?/i, 'BabyRage ayy lmao'))
     .plugin(new Canned(/oh\s*my\s*(goodness|damn|(da+y+u+m+))/i, 'https://www.youtube.com/watch?v=DcJFdCmN98s'))
