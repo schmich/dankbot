@@ -35,7 +35,7 @@ module.exports = function(points, userService) {
     if (to == 'real_jansoon') {
       this.say('%s: senpai cannot get any more dank Keepo', from);
       return;
-    } else if ((to == 'dankbot3000') || (to == 'nightbot')) {
+    } else if ((to == 'dankbot3000') || (to == 'nightbot') || (to == 'zambiechew') || (to == 'zambie_chew')) {
       this.say('%s: bots do not require dank points, only dank memes MrDestructoid', from);
       return;
     }

@@ -14,6 +14,10 @@ module.exports = function(bets) {
     }
 
     var currentBet = await(bets.current()); 
+    if (!currentBet) {
+      this.say('No bet is open. Use !openbet.');
+      return;
+    }
 
     var options = {};
     for (var i = 0; i < currentBet.options.length; ++i) {
@@ -25,19 +29,20 @@ module.exports = function(bets) {
       options[bet.option].push({ user: bet.user, points: bet.points });
     }
 
+    var grandTotal = 0;
+
     var betMessages = [];
     for (var option in options) {
       var optionBets = options[option];
       var users = 'no bets';
-
-      var total = 0;
 
       if (optionBets.length > 0) {
         users = _(optionBets).sortBy('points').reverse().map(function(bet) {
           return sprintf('%s %d', bet.user, bet.points);
         }).join(', ');
 
-        total = _(optionBets).map(function(b) { return b.points; }).sum();
+        var total = _(optionBets).map(function(b) { return b.points; }).sum();
+        grandTotal += total;
 
         betMessages.push(sprintf('★ %s (%s): %s', option, dkp(total), users));
       } else {
@@ -45,6 +50,6 @@ module.exports = function(bets) {
       }
     }
 
-    this.say(betMessages.join(' — '));
+    this.say('Total %s %s', dkp(grandTotal), betMessages.join(' — '));
   });
 };

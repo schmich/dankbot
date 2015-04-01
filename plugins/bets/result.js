@@ -28,7 +28,7 @@ module.exports = function(bets) {
       var showLosers = function() {
         var loserList = [];
         for (var i = 0; i < losers.length; ++i) {
-          loserList.push(sprintf('%s -%s', losers[i].user, dkp(losers[i].points)));
+          loserList.push(sprintf('%s -%s', losers[i].user, losers[i].points));
         }
 
         self.say(
@@ -41,7 +41,7 @@ module.exports = function(bets) {
       var showWinners = function() {
         var winnerList = [];
         for (var i = 0; i < winners.length; ++i) {
-          winnerList.push(sprintf('%s +%s', winners[i].user, dkp(winners[i].points)));
+          winnerList.push(sprintf('%s +%s', winners[i].user, winners[i].points));
         }
 
         self.say(
