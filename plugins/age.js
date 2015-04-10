@@ -17,7 +17,7 @@ module.exports = function(db) {
     } else {
       var firstSeen = moment(doc.d);
       var ageDays = moment().diff(firstSeen, 'days');
-      this.say('First saw %s on %s (%dd ago).', user, firstSeen.format('YYYY/MM/DD'), ageDays);
+      this.say('First saw %s on %s (%dd ago).', user, firstSeen.format('YYYY-MM-DD'), ageDays);
     }
   });
 };
