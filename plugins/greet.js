@@ -54,7 +54,7 @@ module.exports = function(db) {
     channelDelays[user] = setTimeout(function() {
       clearTimeout(channelDelays[user]);
       delete channelDelays[user];
-      say[channel]('%s left BibleThump...rip', user);
+      say[channel]('%s left BibleThump ...rip', user);
     }, 2 * 60 * 1000);
   }
 
