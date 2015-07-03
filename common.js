@@ -66,10 +66,10 @@ Twitch.request = async(function(url, headers) {
   var tries = 0;
   var maxTries = 5;
 
-  var options = { 'url': url };
+  var options = { url: url };
 
   if (headers !== false) {
-    options['headers'] = {
+    options.headers = {
       'Accept': 'application/vnd.twitchtv.v3+json',
       'Client-ID': 'dankbot (https://github.com/schmich/dankbot)'
     };

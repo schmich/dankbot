@@ -19,6 +19,7 @@ var run = async(function(channel) {
 
   dankbot
     .plugin(new Canned(/^\s*Kappa\s*$/, 'Kappa'))
+    .plugin(new Canned(/^\s*KappaPride\s*$/, 'KappaPride'))
     .plugin(new Canned(/(jansoon\s*s\s*u\s*c\s*k\s*s?)|(f\s*u?\s*c\s*k\s*jansoon)|((yo)?u?\s*s\s*u\s*c\s*k\s*jansoon)/i, 'Manners! DansGame'))
     .plugin(new Canned(/f\s*u\s*c\s*k\s*d\s*a\s*n\s*k\s*b\s*o\s*t/i, "Oi, m8, I'll bust ye in de gabba! SwiftRage"))
     .plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/real_jansoon'))

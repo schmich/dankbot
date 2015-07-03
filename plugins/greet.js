@@ -30,11 +30,12 @@ module.exports = function(db) {
         delete channelDelays[user];
       } else {
         var lastSeen = await(userService.lastSeen(user));
-        var stats = await(pointService.query(user));
 
         if (lastSeen === null) {
           say[channel]('New viewer %s joined PogChamp Neva bin here befo!', user);
+          await(pointService.adjust(user, 5));
         } else {
+          var stats = await(pointService.query(user));
           say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), dkp(stats.points), stats.rank);
         }
       }
@@ -54,7 +55,6 @@ module.exports = function(db) {
     channelDelays[user] = setTimeout(function() {
       clearTimeout(channelDelays[user]);
       delete channelDelays[user];
-      say[channel]('%s left BibleThump ...rip', user);
     }, 2 * 60 * 1000);
   }
 
