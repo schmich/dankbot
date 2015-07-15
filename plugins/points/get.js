@@ -8,6 +8,11 @@ module.exports = function(points) {
   return new Command(/^\s*!(dankness|dkp|dankpoints|points|epeen|rank)(\s+|$)/i, function(user) {
     var user = canonicalUser(user) || this.user;
 
+    if (user === this.channel) {
+      this.say('%s has ∞ ₯ deIlluminati', user);
+      return;
+    }
+
     var stats = await(points.query(user));
     this.say('%s has %s (rank %d)', user, dkp(stats.points), stats.rank);
   });
