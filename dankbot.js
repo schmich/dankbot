@@ -38,6 +38,7 @@ var run = async(function(channel) {
     .plugin(new Canned('!donate', donate))
     .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
     .plugin(new Periodic(donate, 15 * 60 * 1000, 30 * 60 * 1000))
+    .plugin(new require('./plugins/color')('GoldenRod'))
     .plugin(new require('./plugins/thanks')())
     .plugin(new require('./plugins/joke')())
     .plugin(new require('./plugins/uptime')())
