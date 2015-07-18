@@ -40,7 +40,7 @@ module.exports = function(bets) {
       return;
     }
 
-    if (!amount.match(/^\d$/)) {
+    if (!amount.match(/^\d+$/)) {
       // Assume arguments are swapped.
       var temp = option;
       option = amount;

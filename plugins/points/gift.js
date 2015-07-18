@@ -13,7 +13,7 @@ module.exports = function(points, userService) {
       return;
     }
 
-    if (!amount.match(/^\d$/)) {
+    if (!amount.match(/^\d+$/)) {
       // Assume arguments are swapped.
       var temp = amount;
       amount = user;

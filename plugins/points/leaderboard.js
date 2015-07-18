@@ -6,7 +6,7 @@ var common = require('../../common'),
 
 module.exports = function(points) {
   return new Command('!leaderboard', function() {
-    var docs = await(points.leaderboard(5));
+    var docs = await(points.leaderboard(10));
 
     var records = [];
     for (var i = 0; i < docs.length; ++i) {
