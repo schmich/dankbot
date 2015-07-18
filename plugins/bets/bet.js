@@ -40,7 +40,15 @@ module.exports = function(bets) {
       return;
     }
 
+    if (!amount.match(/^\d$/)) {
+      // Assume arguments are swapped.
+      var temp = option;
+      option = amount;
+      amount = temp;
+    }
+
     var amount = parseInt(amount);
+
     if (isNaN(amount) || (amount < 1)) {
       this.say('%s: bet amount must be a positive integer. Format is !bet <amount> <option>', this.user);
       return;

@@ -13,6 +13,13 @@ module.exports = function(points, userService) {
       return;
     }
 
+    if (!amount.match(/^\d$/)) {
+      // Assume arguments are swapped.
+      var temp = amount;
+      amount = user;
+      user = temp;
+    }
+
     var from = canonicalUser(this.user);
     var to = canonicalUser(user);
 
