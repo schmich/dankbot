@@ -13,6 +13,7 @@ var run = async(function(channel) {
 
   var twitter = 'Follow jansoon https://twitter.com/jansoon SwiftRage';
   var donate = 'Donate to jansoon https://www.twitchalerts.com/donate/real_jansoon Kreygasm';
+  var reddit = 'Rarest pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
 
   var Periodic = require('./plugins/periodic');
   var Canned = require('./plugins/canned');
@@ -37,8 +38,10 @@ var run = async(function(channel) {
     .plugin(new Canned('!dankbot', 'sup?'))
     .plugin(new Canned('!twitter', twitter))
     .plugin(new Canned('!donate', donate))
+    .plugin(new Canned('!reddit', reddit))
     .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
-    .plugin(new Periodic(donate, 15 * 60 * 1000, 30 * 60 * 1000))
+    .plugin(new Periodic(donate, 10 * 60 * 1000, 30 * 60 * 1000))
+    .plugin(new Periodic(reddit, 20 * 60 * 1000, 30 * 60 * 1000))
     .plugin(new require('./plugins/color')('GoldenRod'))
     .plugin(new require('./plugins/thanks')())
     .plugin(new require('./plugins/joke')())
