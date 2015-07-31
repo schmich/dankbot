@@ -12,8 +12,8 @@ var run = async(function(channel) {
   var db = await(MongoClient.connectAsync(Config.mongo));
 
   var twitter = 'Follow jansoon https://twitter.com/jansoon SwiftRage';
-  var donate = 'Donate to jansoon https://www.twitchalerts.com/donate/real_jansoon Kreygasm';
-  var reddit = 'Rarest pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
+  var donate = '[̲̅$̲̅(̲̅2)̲̅$̲̅] or more dongerbills to hear your dank meme read by robot voice https://www.twitchalerts.com/donate/real_jansoon Kreygasm';
+  var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
 
   var Periodic = require('./plugins/periodic');
   var Canned = require('./plugins/canned');
