@@ -17,6 +17,7 @@ var run = async(function(channel) {
 
   var Periodic = require('./plugins/periodic');
   var Canned = require('./plugins/canned');
+  var Timeout = require('./plugins/timeout');
 
   dankbot
     .plugin(new Canned(/^\s*Kappa\s*$/, 'Kappa'))
@@ -43,6 +44,7 @@ var run = async(function(channel) {
     .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
     .plugin(new Periodic(donate, 10 * 60 * 1000, 30 * 60 * 1000))
     .plugin(new Periodic(reddit, 20 * 60 * 1000, 30 * 60 * 1000))
+    .plugin(new Timeout(/strawpoii\.me/i, 60))
     .plugin(new require('./plugins/color')('GoldenRod'))
     .plugin(new require('./plugins/thanks')())
     .plugin(new require('./plugins/joke')())
