@@ -5,7 +5,7 @@ var common = require('../../common'),
     sprintf = common.sprintf;
 
 module.exports = function(points) {
-  return new Command('!leaderboard', function() {
+  return new Command(/^\s*!(leaderboard|whiteknights)\b/, function() {
     var docs = await(points.leaderboard(10));
 
     var records = [];
