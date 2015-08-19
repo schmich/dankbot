@@ -9,7 +9,8 @@ var common = require('../common'),
     Command = common.Command,
     OnChannel = common.OnChannel,
     OnMessage = common.OnMessage,
-    Twitch = common.Twitch;
+    Twitch = common.Twitch,
+    canonicalUser = common.canonicalUser;
 
 module.exports = function(db) {
   var liveUsers = {};
@@ -30,13 +31,14 @@ module.exports = function(db) {
         delete channelDelays[user];
       } else {
         var lastSeen = await(userService.lastSeen(user));
-
         if (lastSeen === null) {
-          say[channel]('New viewer %s joined PogChamp Neva bin here befo!', user);
           await(pointService.adjust(user, 5));
         } else {
-          var stats = await(pointService.query(user));
-          say[channel]('Welcome back %s 4Head Last here %s - %s (rank %d)', user, timeAgo(lastSeen), dkp(stats.points), stats.rank);
+          var options = await(userService.getOptions(user));
+          if (options && options.greet) {
+            var stats = await(pointService.query(user));
+            say[channel]('%s ★ Last here %s ★ %s (rank %d)', options.greet, timeAgo(lastSeen), dkp(stats.points), stats.rank);
+          }
         }
       }
     }
@@ -138,6 +140,30 @@ module.exports = function(db) {
     }),
     new OnMessage(function() {
       clearTimeout(delays(this.channel)[this.user]);
+    }),
+    new OnMessage(function() {
+      if (this.user !== this.channel) {
+        return;
+      }
+
+      if (m = this.message.match(/^!greet\s+(@?[a-zA-Z0-9][a-zA-Z0-9_]{3,24})\s+(.*)/i)) {
+        var user = canonicalUser(m[1]);
+        var greeting = m[2];
+
+        var exists = await(userService.exists(user));
+        if (!exists) {
+          this.say('User %s does not exist', user);
+          return;
+        }
+
+        if (greeting === 'off') { 
+          await(userService.setOptions(user, { greet: null }));
+          this.say('Removed greeting for %s', user);
+        } else {
+          await(userService.setOptions(user, { greet: greeting }));
+          this.say('Updated greeting for %s', user);
+        }
+      }
     })
   ];
 };
