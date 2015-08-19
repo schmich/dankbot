@@ -27,7 +27,7 @@ module.exports = function(db) {
     var options = await(userService.getOptions(user));
     if (options && options.greet) {
       var stats = await(pointService.query(user));
-      say('%s ★ Last here %s ★ %s (rank %d)', options.greet, timeAgo(lastSeen), dkp(stats.points), stats.rank);
+      say('%s ★ Last seen %s ★ %s (rank %d)', options.greet, timeAgo(lastSeen), dkp(stats.points), stats.rank);
     }
   }
 
