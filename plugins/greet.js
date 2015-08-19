@@ -23,6 +23,14 @@ module.exports = function(db) {
   var userService = require('../lib/user')(db);
   var pointService = new Points(db);
 
+  function greetUser(say, user, lastSeen) {
+    var options = await(userService.getOptions(user));
+    if (options && options.greet) {
+      var stats = await(pointService.query(user));
+      say('%s ★ Last here %s ★ %s (rank %d)', options.greet, timeAgo(lastSeen), dkp(stats.points), stats.rank);
+    }
+  }
+
   function onUserJoin(channel, user) {
     if (user != channel && user != Config.twitch.user) {
       var channelDelays = delays(channel);
@@ -34,11 +42,7 @@ module.exports = function(db) {
         if (lastSeen === null) {
           await(pointService.adjust(user, 5));
         } else {
-          var options = await(userService.getOptions(user));
-          if (options && options.greet) {
-            var stats = await(pointService.query(user));
-            say[channel]('%s ★ Last here %s ★ %s (rank %d)', options.greet, timeAgo(lastSeen), dkp(stats.points), stats.rank);
-          }
+          greetUser(say[channel], user, lastSeen);
         }
       }
     }
@@ -150,8 +154,8 @@ module.exports = function(db) {
         var user = canonicalUser(m[1]);
         var greeting = m[2];
 
-        var exists = await(userService.exists(user));
-        if (!exists) {
+        var lastSeen = await(userService.lastSeen(user));
+        if (!lastSeen) {
           this.say('User %s does not exist', user);
           return;
         }
@@ -162,6 +166,7 @@ module.exports = function(db) {
         } else {
           await(userService.setOptions(user, { greet: greeting }));
           this.say('Updated greeting for %s', user);
+          greetUser(this.say, user, lastSeen);
         }
       }
     })
