@@ -7,7 +7,7 @@ var common = require('./common'),
     Log = common.Log;
 
 var run = async(function(channel) {
-  var dankbot = new Bot();
+  var dankbot = new Bot(Config.twitch.user, Config.twitch.oauth);
 
   var db = await(MongoClient.connectAsync(Config.mongo));
 

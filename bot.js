@@ -3,22 +3,20 @@ var EventEmitter = require('events').EventEmitter,
     common = require('./common'),
     async = common.async,
     await = common.await,
-    Config = common.Config,
     Log = common.Log,
     sprintf = common.sprintf,
     Promise = common.Promise;
 
-function Bot() {
+function Bot(username, oauthToken) {
   var emitter = new EventEmitter();
   emitter.setMaxListeners(0);
 
-  var token = Config.twitch.oauth
-  var client = new irc.Client('irc.twitch.tv', Config.twitch.user, {
+  var client = new irc.Client('irc.twitch.tv', username, {
     port: 6667,
     showErrors: true,
-    password: 'oauth:' + Config.twitch.oauth.replace(/^oauth:/i, ''),
-    userName: Config.twitch.user,
-    realName: Config.twitch.user,
+    password: 'oauth:' + oauthToken.replace(/^oauth:/i, ''),
+    userName: username,
+    realName: username,
     autoConnect: false,
     showErrors: true,
     stripColors: true,
