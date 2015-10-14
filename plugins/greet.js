@@ -61,7 +61,7 @@ module.exports = function(db) {
     channelDelays[user] = setTimeout(function() {
       clearTimeout(channelDelays[user]);
       delete channelDelays[user];
-    }, 2 * 60 * 1000);
+    }, 30 * 60 * 1000);
   }
 
   function timeAgo(timestamp) {
