@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/schmich/dankbot",
   "dependencies": {
-    "URIjs": "^1.14.2",
+    "urijs": "^1.14.2",
     "asyncawait": "^0.7.4",
     "bluebird": "^2.9.14",
     "collections": "^1.2.1",
