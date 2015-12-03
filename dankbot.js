@@ -12,8 +12,9 @@ var run = async(function(channel) {
   var db = await(MongoClient.connectAsync(Config.mongo));
 
   var twitter = 'Follow Senpai https://twitter.com/jansoon SwiftRage';
-  var donate = '[̲̅$̲̅(̲̅2)̲̅$̲̅] or more dongerbills to hear your dank meme read by robot voice https://www.twitchalerts.com/donate/real_jansoon Kreygasm';
+  var donate = '[̲̅$̲̅(̲̅2)̲̅$̲̅] or more dongerbills to hear your dank meme read by robot voice https://www.twitchalerts.com/donate/real_jansoon ShibeZ';
   var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
+  var discord = 'Talk to Senpai: https://discord.gg/0fvE1wM1UM943EKx Kreygasm';
 
   var Periodic = require('./plugins/periodic');
   var Canned = require('./plugins/canned');
@@ -41,9 +42,11 @@ var run = async(function(channel) {
     .plugin(new Canned('!twitter', twitter))
     .plugin(new Canned('!donate', donate))
     .plugin(new Canned('!reddit', reddit))
-    .plugin(new Periodic(twitter, 0, 30 * 60 * 1000))
-    .plugin(new Periodic(donate, 10 * 60 * 1000, 30 * 60 * 1000))
-    .plugin(new Periodic(reddit, 20 * 60 * 1000, 30 * 60 * 1000))
+    .plugin(new Canned('!discord', discord))
+    .plugin(new Periodic(twitter, 0, 60 * 60 * 1000))
+    .plugin(new Periodic(donate, 15 * 60 * 1000, 60 * 60 * 1000))
+    .plugin(new Periodic(reddit, 30 * 60 * 1000, 60 * 60 * 1000))
+    .plugin(new Periodic(discord, 45 * 60 * 1000, 60 * 60 * 1000))
     .plugin(new Timeout(/\bstrawpoii\.me\b/i, 60))
     .plugin(new Timeout(/\bapo\.af\b/i, 60))
     .plugin(new require('./plugins/color')('GoldenRod'))
