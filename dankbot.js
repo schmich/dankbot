@@ -14,7 +14,7 @@ var run = async(function(channel) {
   var twitter = 'Follow Senpai https://twitter.com/jansoon SwiftRage';
   var donate = '[̲̅$̲̅(̲̅2)̲̅$̲̅] or more dongerbills to hear your dank meme read by robot voice https://www.twitchalerts.com/donate/real_jansoon ShibeZ';
   var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
-  var discord = 'Talk to Senpai: https://discord.gg/0fvE1wM1UM943EKx Kreygasm';
+  var discord = 'Talk to Senpai: https://discord.gg/0fvE1wM1UM8kyl7M Kreygasm';
 
   var Periodic = require('./plugins/periodic');
   var Canned = require('./plugins/canned');
