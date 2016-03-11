@@ -25,7 +25,7 @@ var run = async(function(port) {
 
     res.write('<html><head><meta charset="UTF-8"></head><body><pre>');
 
-    var cursor = await(db.collection('messages').findAsync());
+    var cursor = await(db.collection('messages').findAsync()).batchSize(100);
     while ((doc = await(cursor.nextObjectAsync())) != null) {
       res.write(doc.d + ': ' + doc.u + ': ' + escapeHtml(doc.t) + '\n');
     }

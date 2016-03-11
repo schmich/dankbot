@@ -34,7 +34,7 @@ module.exports = function(channel, db) {
     });
 
     this.nextSymbol = async(function(states) {
-      var cursor = await(markovCollection.findAsync({ state: states }));
+      var cursor = await(markovCollection.findAsync({ state: states })).batchSize(100);
 
       var options = [];
       var weights = [];
