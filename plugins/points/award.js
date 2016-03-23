@@ -21,7 +21,7 @@ module.exports = function(points, userService) {
     var amount = parseInt(amount);
 
     if (isNaN(amount)) {
-      this.say('%s: points awarded must be an integer.', this.user);
+      this.say('%s: points awarded must be a positive integer.', this.user);
       return;
     }
 
