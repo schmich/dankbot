@@ -84,7 +84,7 @@ function Bot(username, oauthToken) {
   var say = function(channel) {
     return function() {
       var message = sprintf.apply(null, arguments).trim();
-      if (message[0] == '.' || message[0] == '/') {
+      if (message[0] == '.' || message[0] == '/' || message[0] == '!') {
         return;
       }
 
