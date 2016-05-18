@@ -3,6 +3,6 @@ var common = require('../common'),
 
 module.exports = function(color) {
   return new OnChannel(function() {
-    this.say('.color ' + color);
+    this.unsafeSay('.color ' + color);
   });
 };

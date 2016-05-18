@@ -55,7 +55,7 @@ module.exports = function(bets) {
       setTimeout(showWinners, 6000);
     } catch (e) {
       if (e instanceof BetError) {
-        this.say(e.message);
+        this.say('Error: ' + e.message);
       } else {
         Log.error(e);
         this.say('Unexpected error.');

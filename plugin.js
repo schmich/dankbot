@@ -7,11 +7,12 @@ function OnMessage(handler) {
   this.handler = async(handler);
 
   this.load = function(events) {
-    events.on('message', async(function(channel, user, message, say) {
+    events.on('message', async(function(channel, user, message, say, unsafeSay) {
       self.channel = channel;
       self.user = user;
       self.message = message;
       self.say = say;
+      self.unsafeSay = unsafeSay;
 
       self.handler();
     }));
@@ -29,6 +30,7 @@ function Command(command, handler) {
     self.user = this.user;
     self.message = this.message;
     self.say = this.say;
+    self.unsafeSay = this.unsafeSay;
 
     if (self.command instanceof RegExp) {
       if (self.message.match(self.command)) {
@@ -65,9 +67,10 @@ function OnChannel(handler) {
   this.handler = async(handler);
 
   this.load = function(events) {
-    events.on('channel', async(function(channel, say) {
+    events.on('channel', async(function(channel, say, unsafeSay) {
       self.channel = channel;
       self.say = say;
+      self.unsafeSay = unsafeSay;
 
       self.handler();
     }));
@@ -80,10 +83,11 @@ function OnJoin(handler) {
   this.handler = async(handler);
 
   this.load = function(events) {
-    events.on('join', async(function(channel, user, say) {
+    events.on('join', async(function(channel, user, say, unsafeSay) {
       self.channel = channel;
       self.user = user;
       self.say = say;
+      self.unsafeSay = unsafeSay;
 
       self.handler();
     }));
@@ -96,10 +100,11 @@ function OnPart(handler) {
   this.handler = async(handler);
 
   this.load = function(events) {
-    events.on('part', async(function(channel, user, say) {
+    events.on('part', async(function(channel, user, say, unsafeSay) {
       self.channel = channel;
       self.user = user;
       self.say = say;
+      self.unsafeSay = unsafeSay;
 
       self.handler();
     }));

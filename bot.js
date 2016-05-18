@@ -43,7 +43,7 @@ function Bot(username, oauthToken) {
 
     channel = channel.substr(1).trim().toLowerCase();
 
-    emitter.emit('message', channel, user, message, say(channel));
+    emitter.emit('message', channel, user, message, say(channel), unsafeSay(channel));
   }));
 
   client.on('join', async(function(channel, user) {
@@ -54,7 +54,7 @@ function Bot(username, oauthToken) {
 
     channel = channel.substr(1).trim().toLowerCase();
 
-    emitter.emit('join', channel, user, say(channel));
+    emitter.emit('join', channel, user, say(channel), unsafeSay(channel));
   }));
 
   client.on('part', async(function(channel, user) {
@@ -65,7 +65,7 @@ function Bot(username, oauthToken) {
 
     channel = channel.substr(1).trim().toLowerCase();
 
-    emitter.emit('part', channel, user, say(channel));
+    emitter.emit('part', channel, user, say(channel), unsafeSay(channel));
   }));
 
   this.join = function(channel) {
@@ -74,7 +74,7 @@ function Bot(username, oauthToken) {
 
       client.join(sprintf('#%s', channel), function() {
         Log.info(sprintf('Joined #%s.', channel));
-        emitter.emit('channel', channel, say(channel));
+        emitter.emit('channel', channel, say(channel), unsafeSay(channel));
       });
     });
 
@@ -82,6 +82,17 @@ function Bot(username, oauthToken) {
   };
 
   var say = function(channel) {
+    return function() {
+      var message = sprintf.apply(null, arguments).trim();
+      if (message[0] == '.' || message[0] == '/') {
+        return;
+      }
+
+      client.say(sprintf('#%s', channel), message);
+    };
+  };
+
+  var unsafeSay = function(channel) {
     return function() {
       client.say(sprintf('#%s', channel), sprintf.apply(null, arguments));
     };

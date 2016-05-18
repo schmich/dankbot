@@ -7,7 +7,7 @@ module.exports = function(pattern, timeoutSeconds) {
     load: function(events) {
       events.on('message', async(function(channel, user, message, say) {
         if (message.match(pattern) && (user.toLowerCase() !== channel.toLowerCase())) {
-          say(sprintf('.timeout %s %d', user, timeoutSeconds));
+          unsafeSay(sprintf('.timeout %s %d', user, timeoutSeconds));
           say(sprintf('%s rekt EleGiggle', user));
         }
       }));
