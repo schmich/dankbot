@@ -5,7 +5,7 @@ var common = require('../../common'),
     await = common.await;
 
 module.exports = function(points) {
-  return new Command(/^\s*!(dankness|dkp|dankpoints|points|epeen|rank)(\s+|$)/i, function(user) {
+  return new Command(/^\s*!(dankness|dp|dkp|dankpoints|points|epeen|rank)(\s+|$)/i, function(user) {
     var user = canonicalUser(user) || this.user;
 
     if (user === this.channel) {
