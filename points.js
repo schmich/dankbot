@@ -20,7 +20,7 @@ var awardPoints = async(function(channel, awards, points) {
   }
 
   var now = +Date.now();
-  if ((now - lastTimestamp) < ((9 * 60 + 55) * 1000)) {
+  if ((now - lastTimestamp) < ((4 * 60 + 55) * 1000)) {
     Log.warn('Last points awarded too recently, skipping award.');
     return;
   }
@@ -78,7 +78,7 @@ var awardPoints = async(function(channel, awards, points) {
   Log.info('Awarding points to: ' + viewers.join(', '));
 
   _.forEach(viewers, function(user) {
-    await(points.adjust(user, 2));
+    await(points.adjust(user, 1));
   });
 
   await(awards.insertAsync({ d: now, u: viewers }));
