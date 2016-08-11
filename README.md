@@ -14,6 +14,12 @@
 - Edit `dankbot.js`, configure plugins
 - Run `npm start <channel name>`
 
+# Development
+
+- `docker build -t dankbot docker`
+- `docker run -it -v /path/to/local/source:/srv/dankbot dankbot`
+- `node dankbot.js <channel>`
+
 ## License
 
 Copyright &copy; 2015 Chris Schmich<br>
