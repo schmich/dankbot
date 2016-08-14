@@ -32,6 +32,8 @@ var run = async(function(channel) {
     .plugin(new Canned(/oh\s*my\s*(goodness|damn|(da+y+u+m+))/i, 'https://www.youtube.com/watch?v=DcJFdCmN98s'))
     .plugin(new Canned(/(\bKreygasm\b.*\b@?dankbot)|(\b@?dankbot.*\bKreygasm\b)/i, 'Kreygasm'))
     .plugin(new Canned(/^\s*@?dankbot(3000)?\s*!?\s*$/i, 'sup DatSheffy'))
+    .plugin(new Canned(/^\s*KappaPride\s*\/\s*$/, '\\ KappaPride'))
+    .plugin(new Canned(/^\s*\\\s*KappaPride\s*$/, 'KappaPride /'))
     .plugin(new Canned(/^\s*Kappa\s*\/\s*$/, '\\ Kappa'))
     .plugin(new Canned(/^\s*\\\s*Kappa\s*$/, 'Kappa /'))
     .plugin(new Canned(/^\s*o\s*\/\s*$/, '\\o'))
