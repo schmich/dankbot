@@ -12,7 +12,7 @@ var run = async(function(channel) {
   var db = await(MongoClient.connectAsync(Config.mongo));
 
   var twitter = 'Follow Senpai https://twitter.com/jansoon SwiftRage';
-  var donate = '[̲̅$̲̅(̲̅2)̲̅$̲̅] or more dongerbills to hear your dank meme read by robot voice https://twitch.streamlabs.com/real_jansoon MrDestructoid';
+  var donate = 'Robot m\'Lady reads memes on stream for [̲̅$̲̅(̲̅2)̲̅$̲̅] or more. Tip-tip-tip here: https://twitch.streamlabs.com/real_jansoon HeyGuys';
   var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
   var discord = 'Talk to Senpai, on and off stream: https://discord.gg/0fvE1wM1UM943EKx Kreygasm';
 
