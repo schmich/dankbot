@@ -71,7 +71,7 @@ Twitch.request = async(function(url, headers) {
   if (headers !== false) {
     options.headers = {
       'Accept': 'application/vnd.twitchtv.v3+json',
-      'Client-ID': 'dankbot (https://github.com/schmich/dankbot)'
+      'Client-ID': Config.twitch.clientId
     };
   }
 
