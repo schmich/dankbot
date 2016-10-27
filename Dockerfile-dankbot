@@ -1,0 +1,7 @@
+FROM node:6
+MAINTAINER Chris Schmich <schmch@gmail.com>
+RUN apt-get update && apt-get install -y python build-essential
+COPY . /srv/dankbot
+WORKDIR /srv/dankbot
+RUN npm install
+ENTRYPOINT ["/usr/local/bin/node", "/srv/dankbot/dankbot.js"]

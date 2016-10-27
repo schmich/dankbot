@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mongo:
+    restart: always
+    image: mongo:3
+    expose:
+      - 27017
+  dankbot:
+    build:
+      context: .
+      dockerfile: Dockerfile-dankbot
+    command: [schmikekeke]
+    restart: always
+    links:
+      - mongo:mongo
