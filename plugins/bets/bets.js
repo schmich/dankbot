@@ -8,10 +8,16 @@ var common = require('../../common'),
     dkp = common.dkp;
 
 module.exports = function(bets) {
+  var lastBets = 0;
+
   return new Command('!bets', function(amount, option) {
-    if (this.user != this.channel) {
+    var isAdmin = (this.user == this.channel);
+    var now = Date.now();
+    if (!isAdmin && (now - lastBets < (30 * 1000))) {
       return;
     }
+
+    lastBets = now;
 
     var currentBet = await(bets.current()); 
     if (!currentBet) {
