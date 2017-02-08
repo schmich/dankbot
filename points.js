@@ -20,7 +20,7 @@ var awardPoints = async(function(channel, awards, points) {
   }
 
   var now = +Date.now();
-  if ((now - lastTimestamp) < ((4 * 60 + 55) * 1000)) {
+  if ((now - lastTimestamp) < ((9 * 60 + 55) * 1000)) {
     Log.warn('Last points awarded too recently, skipping award.');
     return;
   }

@@ -42,7 +42,7 @@ module.exports = function(db, channel) {
 
       for (var user in messages) {
         user = user.toLowerCase();
-        await(points.adjust(user, 2));
+        await(points.adjust(user, 4));
       }
     }
 
