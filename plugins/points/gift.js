@@ -34,6 +34,11 @@ module.exports = function(points, userService) {
       return;
     }
 
+    if (amount > 50) {
+      this.say("I'm sorry, %s, I'm afraid I can't do that DankPepe", this.user);
+      return;
+    }
+
     if (!await(userService.exists(to))) {
       this.say('%s: user %s does not exist', from, to);
       return;
