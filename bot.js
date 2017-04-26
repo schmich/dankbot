@@ -82,7 +82,12 @@ function Bot(username, oauthToken) {
   };
 
   var say = function(channel) {
-    return function() {
+    return function(format) {
+      if (arguments.length === 1) {
+        // No sprintf formatting, escape the escape character.
+        format = format.replace('%', '%%');
+      }
+
       var message = sprintf.apply(null, arguments).trim();
       if (message[0] == '.' || message[0] == '/' || message[0] == '!') {
         return;
