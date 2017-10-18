@@ -85,7 +85,7 @@ function Bot(username, oauthToken) {
     return function(format) {
       if (arguments.length === 1) {
         // No sprintf formatting, escape the escape character.
-        format = format.replace('%', '%%');
+        format = format.replace(/%/g, '%%');
       }
 
       var message = sprintf.apply(null, arguments).trim();
