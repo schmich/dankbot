@@ -13,7 +13,7 @@ var run = async(function(channel) {
 
   var twitter = 'Follow Senpai https://twitter.com/jansoon SwiftRage';
   var donate = 'Robot m\'Lady reads memes on stream for [̲̅$̲̅(̲̅2)̲̅$̲̅] or more. Tip-tip-tip here: https://twitch.streamlabs.com/real_jansoon HeyGuys';
-  var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ OSfrog';
+  var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ DankPepe';
   var discord = 'Talk to Senpai, on and off stream: https://discord.gg/0fvE1wM1UM943EKx Kreygasm';
 
   var Periodic = require('./plugins/periodic');
@@ -46,9 +46,9 @@ var run = async(function(channel) {
     .plugin(new Canned('!reddit', reddit))
     .plugin(new Canned('!discord', discord))
     .plugin(new Periodic(twitter, 0, 60 * 60 * 1000))
-    .plugin(new Periodic(donate, 15 * 60 * 1000, 60 * 60 * 1000))
-    .plugin(new Periodic(reddit, 30 * 60 * 1000, 60 * 60 * 1000))
-    .plugin(new Periodic(discord, 45 * 60 * 1000, 60 * 60 * 1000))
+    .plugin(new Periodic(donate, 20 * 60 * 1000, 60 * 60 * 1000))
+    //.plugin(new Periodic(reddit, 30 * 60 * 1000, 60 * 60 * 1000))
+    .plugin(new Periodic(discord, 40 * 60 * 1000, 60 * 60 * 1000))
     .plugin(new Timeout(/\bstrawpoii\.me\b/i, 60))
     .plugin(new Timeout(/\bapo\.af\b/i, 60))
     .plugin(new require('./plugins/color')('GoldenRod'))
