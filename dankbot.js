@@ -65,7 +65,7 @@ var run = async(function(channel) {
     .plugin(new require('./plugins/press-1-if')())
     .plugin(new require('./plugins/age')(db))
     .plugin(new require('./plugins/points')(db))
-    .plugin(new require('./plugins/bets')(db))
+    //.plugin(new require('./plugins/bets')(db))
     .join(channel);
 });
 
