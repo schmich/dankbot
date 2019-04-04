@@ -9,7 +9,7 @@ module.exports = function(points) {
     var user = canonicalUser(user) || this.user;
 
     if (user === this.channel) {
-      this.say('%s has ∞ ₯ deIlluminati', user);
+      this.say('%s has ∞ ₯ TheIlluminati', user);
       return;
     }
 
