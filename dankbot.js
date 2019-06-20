@@ -12,7 +12,7 @@ var run = async(function(channel) {
   var db = await(MongoClient.connectAsync(Config.mongo));
 
   var twitter = 'Follow Senpai https://twitter.com/jansoon SwiftRage';
-  var donate = 'Robot m\'Lady reads memes on stream for [̲̅$̲̅(̲̅2)̲̅$̲̅] or more. Tip-tip-tip here: https://twitch.streamlabs.com/real_jansoon HeyGuys';
+  var donate = 'Robot m\'Lady reads memes on stream for [̲̅$̲̅(̲̅2)̲̅$̲̅] or more. Tip-tip-tip here: https://twitch.streamlabs.com/jansoon HeyGuys';
   var reddit = 'Rarest of pepes here: https://www.reddit.com/r/jansoon/ DankPepe';
   var discord = 'Talk to Senpai, on and off stream: https://discord.gg/0fvE1wM1UM943EKx Kreygasm';
 
@@ -25,10 +25,9 @@ var run = async(function(channel) {
     .plugin(new Canned(/^\s*KappaPride\s*$/, 'KappaPride'))
     .plugin(new Canned(/(jansoon\s*s\s*u\s*c\s*k\s*s?)|(f\s*u?\s*c\s*k\s*jansoon)|((yo)?u?\s*s\s*u\s*c\s*k\s*jansoon)/i, 'Manners! DansGame'))
     .plugin(new Canned(/f\s*u\s*c\s*k\s*d\s*a\s*n\s*k\s*b\s*o\s*t/i, "Oi, m8, I'll bust ye in de gabba! SwiftRage"))
-    .plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/real_jansoon'))
+    .plugin(new Canned('!songlist', 'https://www.nightbot.tv/songlist/jansoon'))
     .plugin(new Canned('!commands', 'List of commands under the stream m8. OMGScoots'))
     .plugin(new Canned(/control\s*warrior/i, 'Control warr... ResidentSleeper'))
-    //.plugin(new Canned(/^\s*a\s*(y\s*)+(l\s*m\s*a\s*o\s*)?/i, 'BabyRage ayy lmao'))
     .plugin(new Canned(/oh\s*my\s*(goodness|damn|(da+y+u+m+))/i, 'https://www.youtube.com/watch?v=DcJFdCmN98s'))
     .plugin(new Canned(/(\bKreygasm\b.*\b@?dankbot)|(\b@?dankbot.*\bKreygasm\b)/i, 'Kreygasm'))
     .plugin(new Canned(/^\s*@?dankbot(3000)?\s*!?\s*$/i, 'sup DatSheffy'))
@@ -47,7 +46,6 @@ var run = async(function(channel) {
     .plugin(new Canned('!discord', discord))
     .plugin(new Periodic(twitter, 0, 60 * 60 * 1000))
     .plugin(new Periodic(donate, 20 * 60 * 1000, 60 * 60 * 1000))
-    //.plugin(new Periodic(reddit, 30 * 60 * 1000, 60 * 60 * 1000))
     .plugin(new Periodic(discord, 40 * 60 * 1000, 60 * 60 * 1000))
     .plugin(new Timeout(/\bstrawpoii\.me\b/i, 60))
     .plugin(new Timeout(/\bapo\.af\b/i, 60))
@@ -65,7 +63,6 @@ var run = async(function(channel) {
     .plugin(new require('./plugins/press-1-if')())
     .plugin(new require('./plugins/age')(db))
     .plugin(new require('./plugins/points')(db))
-    //.plugin(new require('./plugins/bets')(db))
     .join(channel);
 });
 

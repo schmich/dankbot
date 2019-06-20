@@ -44,7 +44,7 @@ module.exports = function(points, userService) {
       return;
     }
 
-    if (to == 'real_jansoon') {
+    if (to == 'jansoon') {
       this.say('%s: senpai cannot get any more dank Keepo', from);
       return;
     } else if ((to == 'dankbot3000') || (to == 'nightbot') || (to == 'zambiechew') || (to == 'zambie_chew')) {

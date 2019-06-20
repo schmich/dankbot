@@ -34,7 +34,7 @@ module.exports = function(db, channel) {
 
     Log.info('Stream is online.');
 
-    var ignored = ['dankbot3000', 'zambiechew', 'zambie_chew', 'nightbot', 'real_jansoon'];
+    var ignored = ['dankbot3000', 'zambiechew', 'zambie_chew', 'nightbot', 'jansoon'];
 
     var users = _(messages).omit(ignored).keys().value();
     if (users.length > 0) {
